@@ -1,0 +1,59 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="staticBackdropLabel">{{ titleModal }} Imagen</h5>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+    (click)="dismissModal()"
+  ></button>
+</div>
+<form [formGroup]="formBiographyImg" (ngSubmit)="onSubmit($event)">
+  <div class="modal-body">
+    <!-- <div class="row justify-content-center text-center">
+      <div
+        style="background-color: grey; width: 400px; height: 400px; margin-bottom: 1%"
+        class="shadow"
+      >
+        <h4>vista previa</h4>
+        <h5>400x400</h5>
+      </div>
+    </div> -->
+    <div class="row justify-content-center">
+      <app-alert-danger
+        *ngIf="mErrMessage"
+        [mensajeAlert]="mErrMessage"
+        [mensajeStatus]="mErrStatus"
+        [mensajeStatusText]="mErrStatusText"
+      ></app-alert-danger>
+      <input type="text" formControlName="id" name="id" style="display:none;" />
+      <input
+        class="form-control shadow"
+        type="file"
+        name="img"
+        accept="images/*"
+        formControlName="img"
+        style="width: 400px;"
+        [class.border-danger]="ImageValid"
+        (change)="onFileSelected($event)"
+      />
+      <span *ngIf="ImageError" class="errorMessage text-center">
+        {{ mErrImage }}
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary shadow"
+      data-bs-dismiss="modal"
+      (click)="closeModal()"
+    >
+      Cerrar
+    </button>
+    <button [disabled]="spinner" type="submit" class="btn btn-primary shadow">
+      <app-spinner *ngIf="spinner"></app-spinner>
+      Aceptar
+    </button>
+  </div>
+</form>

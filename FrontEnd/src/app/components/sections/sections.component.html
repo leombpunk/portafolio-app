@@ -1,0 +1,153 @@
+<section id="section-about">
+  <div class="container-fluid">
+    <h3>Acerca de mí</h3>
+    <!-- <span *ngIf=""></span> -->
+    <app-card-biography
+      [githubLink]="bio.github"
+      [linkedinLink]="bio.linkedin"
+      [imageURL]="bio.foto_url"
+      [altImagen]="bio.foto"
+      [titleBio]="bio.titulo"
+      [descripcionBio]="bio.acercade"
+      [perfil_id]="bio.id"
+      [email]="bio.correo"
+      [pasero]="bio"
+      [isLogged]="isLogged"
+    >
+    </app-card-biography>
+  </div>
+</section>
+
+<section id="section-experience">
+  <div class="container-fluid">
+    <h3>
+      Experiencia laboral
+      <app-button-add
+        *ngIf="isLogged"
+        modalTarget="experience"
+      ></app-button-add>
+    </h3>
+    <div *ngIf="expe.length > 0; else cardEmptyExperience">
+      <app-card-default
+        *ngFor="let experience of expe"
+        [imageURL]="experience.logo_url"
+        [altImagen]="experience.logo"
+        [titleCard]="experience.cargo"
+        [descripcionCard]="experience.empresa"
+        [desde]="experience.desde"
+        [hasta]="experience.hasta"
+        [tareas]="experience.tarea"
+        [refe_tel]="experience.reftelef"
+        [refe_per]="experience.refnombre"
+        [apuntar]="'experience'"
+        [dataEnter]="experience"
+        [isLogged]="isLogged"
+      ></app-card-default>
+    </div>
+    <ng-template #cardEmptyExperience>
+      <app-card-empty
+        cardHeader="Opps!!"
+        cardText="Aun no hay ningúna Experiencia laboral cargada!"
+      ></app-card-empty>
+    </ng-template>
+  </div>
+</section>
+
+<section id="section-academic">
+  <div class="container-fluid">
+    <h3>
+      Educación
+      <app-button-add *ngIf="isLogged" modalTarget="academic"></app-button-add>
+    </h3>
+    <div *ngIf="academ.length > 0; else cardEmptyAcademic">
+      <app-card-default
+        *ngFor="let aca of academ"
+        [imageURL]="aca.logo_url"
+        [altImagen]="aca.logo"
+        [titleCard]="aca.titulo"
+        [descripcionCard]="aca.institucion"
+        [locacionCard]="aca.locacion"
+        [desde]="aca.desde"
+        [hasta]="aca.hasta"
+        [tareas]="aca.habilidades"
+        [apuntar]="'academic'"
+        [dataEnter2]="aca"
+        [isLogged]="isLogged"
+      ></app-card-default>
+    </div>
+    <ng-template #cardEmptyAcademic>
+      <app-card-empty
+        cardHeader="Opps!!"
+        cardText="Aun no hay ningún Estudio/Curso cargado!"
+      ></app-card-empty>
+    </ng-template>
+  </div>
+</section>
+
+<section id="section-skills">
+  <div class="container-fluid">
+    <h3>
+      Habilidades
+      <app-button-add *ngIf="isLogged" modalTarget="skill"></app-button-add>
+    </h3>
+    <div *ngIf="skills.length > 0; else cardEmptySkill">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <app-card-skills
+          *ngFor="let skill of skills"
+          [titleSkill]="skill.descripcion"
+          [nivelSkill]="skill.nivel"
+          [skillData]="skill"
+          [isLogged]="isLogged"
+        ></app-card-skills>
+      </div>
+    </div>
+    <ng-template #cardEmptySkill>
+      <app-card-empty
+        cardHeader="Opps!!"
+        cardText="Aun no hay ningúna Habilidad cargado!"
+      ></app-card-empty>
+    </ng-template>
+  </div>
+</section>
+
+<section id="section-projects">
+  <div class="container-fluid">
+    <h3>
+      Proyectos
+      <app-button-add *ngIf="isLogged" modalTarget="project"></app-button-add>
+    </h3>
+    <div *ngIf="projects.length > 0; else cardEmptyProject">
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <app-card-projects
+          *ngFor="let project of projects"
+          [imageURL]="project.logo_url"
+          [altImagen]="project.logo"
+          [titleProject]="project.nombre"
+          [descripcionProject]="project.descripcion"
+          [inicioProject]="project.desde"
+          [finProject]="project.hasta"
+          [enlaceProject]="project.enlace"
+          [sitioProject]="project.sitio"
+          [projectData]="project"
+          [isLogged]="isLogged"
+        ></app-card-projects>
+      </div>
+    </div>
+    <ng-template #cardEmptyProject>
+      <app-card-empty
+        cardHeader="Opps!!"
+        cardText="Aun no hay ningún Proyecto cargado!"
+      ></app-card-empty>
+    </ng-template>
+  </div>
+</section>
+
+<ng-template>
+  <app-modal-add-edit-biography></app-modal-add-edit-biography>
+  <app-modal-add-edit-experience></app-modal-add-edit-experience>
+  <app-modal-add-edit-academic></app-modal-add-edit-academic>
+  <app-modal-add-edit-skill></app-modal-add-edit-skill>
+  <app-modal-add-edit-project></app-modal-add-edit-project>
+  <app-modal-edit-image></app-modal-edit-image>
+  <app-modal-delete-some></app-modal-delete-some>
+</ng-template>

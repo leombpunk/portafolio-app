@@ -1,0 +1,13 @@
+<div class="col col-btn">
+  <div class="card h-100 shadow text-center">
+    <div class="card-body">
+      <h4 class="card-title">{{ titleSkill }}</h4>
+      <meter id="disk_c" [value]="nivelSkill" min="0" max="10"></meter>
+      <p class="card-text text-center"><i><b><u>Nivel: {{ nivelSkill }} / 10</u></b></i></p>
+      <div class="testeando">
+        <app-button-edit *ngIf="isLogged" modalTarget="skill" type="1" [skillData]="skillData"></app-button-edit>
+        <app-button-delete *ngIf="isLogged" modalTarget="skill" type="1" [skillData]="skillData"></app-button-delete>
+      </div>
+    </div>
+  </div>
+</div>

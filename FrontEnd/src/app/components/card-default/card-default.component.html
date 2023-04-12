@@ -1,0 +1,70 @@
+<div class="card mb-3 shadow">
+  <div class="row g-0">
+    <div class="col-md-2 col-btn" style="text-align: center;">
+      <img
+        [src]="imageURL"
+        class="img-fluid rounded-start academic"
+        [alt]="altImagen"
+        style="width: 130px; height: auto;"
+      />
+      <div class="testeando">
+        <app-button-edit
+          *ngIf="isLogged"
+          [type]="type2"
+          [modalTarget]="apuntar"
+          [expeData]="dataEnter"
+          [academData]="dataEnter2"
+        ></app-button-edit>
+        <app-button-delete
+          *ngIf="isLogged"
+          [type]="type2"
+          [modalTarget]="apuntar"
+          [expeData] = "dataEnter"
+          [academData]="dataEnter2"
+        ></app-button-delete>
+      </div>
+    </div>
+    <div class="col-md-10 col-btn">
+      <div class="card-body">
+        <h4 class="card-title">{{ titleCard }}</h4>
+        <!-- testing start-->
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <p class="card-text">
+              {{ descripcionCard }} <strong><em> {{ locacionCard }} </em></strong>
+            </p>
+            <p class="card-text">
+              <small class="text-muted"
+                >Desde: {{ desde }} - Hasta: {{ hasta || "Presente" }}</small
+              >
+            </p>
+            <p class="text-muted">{{ refe_per }} {{ refe_tel }}</p>
+          </div>
+          <div class="col">
+            <p class="text-muted">
+              <li *ngFor="let tarea of tareas">{{ tarea }}</li>
+            </p>
+          </div>
+        </div>
+        <!-- testing end -->
+
+        <div class="testeando">
+          <app-button-edit
+            *ngIf="isLogged"
+            [type]="type1"
+            [modalTarget]="apuntar"
+            [expeData]="dataEnter"
+            [academData]="dataEnter2"
+          ></app-button-edit>
+          <app-button-delete
+            *ngIf="isLogged"
+            [type]="type1"
+            [modalTarget]="apuntar"
+            [expeData]="dataEnter"
+            [academData]="dataEnter2"
+          ></app-button-delete>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

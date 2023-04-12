@@ -1,0 +1,53 @@
+<div class="col">
+  <div class="card h-100 shadow col-btn">
+    <img
+      [src]="imageURL"
+      class="card-img-top img-fluid rounded-start academic"
+      style="width: auto; height: 300px; align-self: center;"
+      [alt]="altImagen"
+    />
+    <div class="testeando">
+      <app-button-edit *ngIf="isLogged" modalTarget="project" type="2" [projectData]="projectData"></app-button-edit>
+      <app-button-delete *ngIf="isLogged" modalTarget="project" type="2" [projectData]="projectData"></app-button-delete>
+    </div>
+    <div class="col-btn">
+      <div class="card-body">
+        <h4 class="card-title">{{ titleProject }}</h4>
+        <p class="card-text">Inicio: {{ inicioProject }} // Fin: {{ finProject || "Presente" }} </p>
+        <p class="card-text">
+          {{ descripcionProject }}
+        </p>
+
+        <div class="testeando">
+          <app-button-edit *ngIf="isLogged" modalTarget="project" type="1" [projectData]="projectData"></app-button-edit>
+          <app-button-delete *ngIf="isLogged" modalTarget="project" type="1" [projectData]="projectData"></app-button-delete>
+        </div>
+      </div>
+    </div>
+    <div class="row g-0">
+      <div class="card-footer">
+        <div class="card-text redes justify-content-center">
+          <a
+            [href]="enlaceProject"
+            target="_blank"
+            class="btn btn-circle github"
+            style="font-size: 30px; width: 60px; height: 60px; border-radius: 30px"
+            title="Documentación"
+          >
+            <fa-icon [icon]="faBook"></fa-icon>
+          </a>
+
+          <a
+            [href]="sitioProject"
+            target="_blank"
+            class="btn btn-circle github"
+            style="font-size: 30px; width: 60px; height: 60px; border-radius: 30px"
+            title="Sitio Web"
+          >
+            <fa-icon [icon]="faGlobe"></fa-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

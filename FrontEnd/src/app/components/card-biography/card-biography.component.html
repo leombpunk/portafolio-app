@@ -1,0 +1,58 @@
+<div class="card mb-3 shadow">
+  <!-- parametrizar este componente-->
+  <div class="row g-0">
+    <div class="col-md-3 col-btn">
+      <img
+        [src]="imageURL"
+        class="img-fluid rounded-start"
+        [alt]="altImagen"
+        loading="lazy"
+      />
+      <div class="testeando">
+        <app-button-edit *ngIf="isLogged" modalTarget="biography" type="2" [perfil_id]="perfil_id" [perfilData]="pasero"></app-button-edit>
+        <app-button-delete *ngIf="isLogged" modalTarget="biography" type="2" [bioData]="pasero"></app-button-delete>
+      </div>
+    </div>
+    <div class="col-md-9 col-btn">
+      <div class="card-body">
+        <h4 class="card-title">{{ titleBio }}</h4>
+        <p class="card-text">
+          {{ descripcionBio }}
+        </p>
+        <div class="testeando">
+          <app-button-edit *ngIf="isLogged" modalTarget="biography" type="1" [perfil_id]="perfil_id" [perfilData]="pasero"></app-button-edit>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row g-0">
+    <div class="card-footer">
+      <div class="card-text redes justify-content-center">
+        <a
+          [href]="'mailto:'+email"
+          target="_blank"
+          class="btn btn-circle mail"
+          style="font-size: 30px; width: 60px; height: 60px; border-radius: 30px"
+        >
+          <fa-icon [icon]="faEnvelope"></fa-icon>
+        </a>
+        <a
+          [href]="githubLink"
+          target="_blank"
+          class="btn btn-circle github"
+          style="font-size: 30px; width: 60px; height: 60px; border-radius: 30px"
+        >
+          <fa-icon [icon]="faGithub"></fa-icon>
+        </a>
+        <a
+          [href]="linkedinLink"
+          target="_blank"
+          class="btn btn-circle linkedin"
+          style="font-size: 30px; width: 60px; height: 60px; border-radius: 30px"
+        >
+          <fa-icon [icon]="faLinkedin"></fa-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

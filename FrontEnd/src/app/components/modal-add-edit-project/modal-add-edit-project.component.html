@@ -1,0 +1,154 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="staticBackdropLabel">{{ titleModal }}</h5>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="close"
+    (click)="dismissModal()"
+  ></button>
+</div>
+<form [formGroup]="formProject" (ngSubmit)="onSubmit($event)">
+  <div class="modal-body">
+    <app-alert-danger
+      *ngIf="mErrMessage"
+      [mensajeAlert]="mErrMessage"
+      [mensajeStatus]="mErrStatus"
+      [mensajeStatusText]="mErrStatusText"
+    ></app-alert-danger>
+    <input
+      type="text"
+      id="id"
+      formControlName="id"
+      value="0"
+      style="display: none;"
+    />
+    <input
+      type="text"
+      id="usuarios_id"
+      formControlName="usuarios_id"
+      value="0"
+      style="display: none;"
+    />
+    <div class="mb-3">
+      <label for="nombrePro" class="form-label">Nombre:</label>
+      <input
+        type="text"
+        id="nombrePro"
+        name="nombrePro"
+        formControlName="nombre"
+        class="form-control shadow"
+        placeholder="Ingrese el nombre del proyecto"
+        [class.border-danger]="NombreValid"
+      />
+      <span *ngIf="NombreError" class="errorMessage">{{ mErrNombre }}</span>
+    </div>
+    <div class="mb-3">
+      <label for="descripcionPro" class="form-label">Descripcion:</label>
+      <textarea
+        id="descripcionPro"
+        name="descripcion"
+        formControlName="descripcion"
+        class="form-control shadow"
+        cols="10"
+        rows="5"
+        placeholder="Describa su proyecto, herramientas utilizadas, ect..."
+        [class.border-danger]="DescripcionValid"
+      ></textarea>
+      <span *ngIf="DescripcionError" class="errorMessage">{{
+        mErrDescripcion
+      }}</span>
+    </div>
+    <div class="mb-3">
+      <label for="repositorio" class="form-label"
+        >Repositorio (enlace):
+        <span
+          placement="end"
+          ngbTooltip="Por favor intoruzca aquí la URL donde tenga documentación de su proyecto! (anteponer http:// ó https://)"
+          class="customTooltip"
+        >
+          <fa-icon [icon]="faCircleQuestion"></fa-icon></span
+      ></label>
+      <input
+        type="text"
+        id="repositorio"
+        name="repositorio"
+        formControlName="enlace"
+        class="form-control shadow"
+        placeholder="Ingrese el URL del repositorio"
+        [class.border-danger]="EnlaceValid"
+      />
+      <span *ngIf="EnlaceError" class="errorMessage">{{ mErrEnlace }}</span>
+    </div>
+    <div class="mb-3">
+      <label for="sitio" class="form-label"
+        >Sitio (demo):
+        <span
+          placement="end"
+          ngbTooltip="Si su proyecto tiene una demo, ponga la URL aquí (anteponer http:// ó https://)"
+          class="customTooltip"
+        >
+          <fa-icon [icon]="faCircleQuestion"></fa-icon></span
+      ></label>
+      <input
+        type="text"
+        id="sitio"
+        name="sitio"
+        formControlName="sitio"
+        class="form-control shadow"
+        placeholder="Ingrese el URL del sitio"
+        [class.border-danger]="SitioValid"
+      />
+      <span *ngIf="SitioError" class="errorMessage">{{ mErrSitio }}</span>
+    </div>
+    <div class="mb-3">
+      <div class="row">
+        <div class="col-6">
+          <label for="desde" class="form-label">Inicio:</label>
+          <input
+            type="date"
+            id="desde"
+            formControlName="desde"
+            class="form-control shadow"
+            [class.border-danger]="DesdeValid"
+          />
+          <span *ngIf="DesdeError" class="errorMessage"> {{ mErrDesde }} </span>
+        </div>
+        <div class="col-6">
+          <label for="hasta" class="form-label"
+            >Fin:
+            <span
+              placement="end"
+              ngbTooltip="Si su proyecto aun sigue en 'desarrollo' por favor deje en blanco este campo, si guarda una fecha no podra ser borrada mas adelante, pero si la puede modificar"
+              class="customTooltip"
+              style="color: red;"
+            >
+              <fa-icon [icon]="faCircleQuestion"></fa-icon></span
+          ></label>
+          <input
+            type="date"
+            id="hasta"
+            formControlName="hasta"
+            class="form-control shadow"
+            [class.border-danger]="HastaValid"
+          />
+          <span *ngIf="HastaError" class="errorMessage"> {{ mErrHasta }} </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary shadow"
+      data-bs-dismiss="modal"
+      (click)="closeModal()"
+    >
+      Cerrar
+    </button>
+    <button [disabled]="spinner" type="submit" class="btn btn-primary shadow">
+      <app-spinner *ngIf="spinner"></app-spinner>
+      Aceptar
+    </button>
+  </div>
+</form>

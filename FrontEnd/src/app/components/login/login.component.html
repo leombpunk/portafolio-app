@@ -1,0 +1,110 @@
+<header>
+  <nav class="navbar  navbar-expand-lg navbar-light bg-light mb-5 shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="assets\images\favicon.png" alt="logo" width="30" /> SoftBoos
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div *ngIf="isLogged; else loggedOut" class="container-fluid">
+  <div
+    class="row row-cols-1 row-cols-md-2 g-4 justify-content-center align-items-center"
+  >
+    <div class="card">
+      Sesion Iniciada
+    </div>
+  </div>
+</div>
+
+<ng-template #loggedOut>
+  <div class="container-fluid">
+    <div
+      class="row row-cols-1 row-cols-md-2 g-4 justify-content-center align-items-center"
+    >
+      <div class="col">
+        <div class="card h-100 shadow">
+          <div class="card-header">
+            <ul class="nav nav-pills nav-justified">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  routerLink="/login"
+                  >Login</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/registro">Resgistro</a>
+              </li>
+            </ul>
+          </div>
+          <img
+            src="./assets/images/favicon.png"
+            class="card-img-top img-fluid rounded-start academic"
+            style="width: 150px; height: auto; align-self: center;"
+            alt="proyecto"
+          />
+          <div class="card-body">
+            <h4 class="card-title text-center">Inicio de sesión</h4>
+            <div *ngIf="isLogginFail">
+              <app-alert-danger [mensajeAlert]="mErrTokenService" [mensajeStatus]="mErrStatus" [mensajeStatusText]="mErrStatusText"></app-alert-danger>
+            </div>
+            <form
+              [formGroup]="formLogin"
+              (ngSubmit)="onSubmit($event)"
+              autocomplete="off"
+            >
+              <div class="mb-3">
+                <label for="usuario" class="form-label">Usuario:</label>
+                <input
+                  type="text"
+                  id="usuario"
+                  name="usuario"
+                  formControlName="usuario"
+                  class="form-control shadow"
+                  placeholder="Usuario"
+                  [class.border-danger]="UserValid"
+                />
+                <span *ngIf="UserError" class="errorMessage">{{
+                  mErrUser
+                }}</span>
+              </div>
+              <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña:</label>
+                <input
+                  type="password"
+                  id="contrasena"
+                  name="contrasena"
+                  formControlName="contrasena"
+                  class="form-control shadow"
+                  placeholder="Contraseña"
+                  [class.border-danger]="PassValid"
+                />
+                <span *ngIf="PassError" class="errorMessage">{{
+                  mErrPass
+                }}</span>
+              </div>
+              <button [disabled]="spinner" type="submit" class="btn btn-primary shadow">
+                <app-spinner *ngIf="spinner"></app-spinner>
+                Iniciar sesión
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,45 @@
+<header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" (click)="onClick('section-about')" style="cursor: pointer;">
+          <img src="assets\images\favicon.png" alt="logo" width="30" /> {{ nombreApellido }}
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" (click)="onClick('section-about')" style="cursor: pointer;">Acerca de</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" (click)="onClick('section-experience')" style="cursor: pointer;">Experiencia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" (click)="onClick('section-academic')" style="cursor: pointer;">Educación</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" (click)="onClick('section-skills')" style="cursor: pointer;">Habilidades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" (click)="onClick('section-projects')" style="cursor: pointer;">Proyectos</a>
+            </li>
+          </ul>
+          <button *ngIf="!isLogged" type="button" class="btn btn-outline-success" routerLink="/login">
+            Ingresar
+          </button>
+          <button *ngIf="isLogged" type="button" class="btn btn-outline-danger" (click)="onLogOut()" routerLink="/">
+            Salir
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
